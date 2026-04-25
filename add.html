@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Family Member</title>
+</head>
+<body>
+
+<h2>Add Family Member</h2>
+
+<form id="memberForm">
+  Name: <input type="text" id="name"><br><br>
+  Relation: <input type="text" id="relation"><br><br>
+  Birth Year: <input type="number" id="year"><br><br>
+  <button type="submit">Save</button>
+</form>
+
+<a href="index.html">⬅ Back to Home</a>
+
+<script>
+document.getElementById("memberForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  let members = JSON.parse(localStorage.getItem("family")) || [];
+
+  members.push({
+    name: document.getElementById("name").value,
+    relation: document.getElementById("relation").value,
+    year: document.getElementById("year").value
+  });
+
+  localStorage.setItem("family", JSON.stringify(members));
+
+  alert("Saved!");
+});
+</script>
+
+</body>
+</html>
